@@ -1,0 +1,63 @@
+{
+  "sites": [
+    {
+      "name": "英文站 kilandu.com",
+      "base": "https://www.kilandu.com",
+      "admin_login": "/admin/index/dologin",
+      "username": "",
+      "password": "",
+      "fid": 1,
+      "label_en": true
+    },
+    {
+      "name": "中文站 kilandu.cn",
+      "base": "https://www.kilandu.cn",
+      "admin_login": "/admin/index/dologin",
+      "username": "",
+      "password": "",
+      "fid": 1,
+      "label_en": false
+    }
+  ],
+  "poll_interval_sec": 1800,
+  "request_timeout": 25,
+  "state_file": "state.json",
+  "push": {
+    "sct_key": "",
+    "sct_api": "https://sctapi.ftqq.com/{key}.send",
+    "smtp": {
+      "enable": true,
+      "host": "smtp.qq.com",
+      "port": 465,
+      "user": "",
+      "pass": "",
+      "to": "",
+      "ssl": true
+    }
+  },
+  "filters": {
+    "spam_keywords": [
+      "casino", "gambling", "poker", "betting", "rare coin", "bitcoin", "crypto",
+      "video to explain", "engaging video", "our videos", "video services",
+      "seo services", "backlink", "guest post", "кракен", "kraken", "drug",
+      "viagra", "escort", "adult", "править", "заработать", "coins", "unsubscribe",
+      "content is amazing", "guest posting", "funding", "investment company",
+      "financing", "loan", "lender", "capital", "verified accounts", "account seller",
+      "пакеты", "ветошь", "прайс-лист", "домен", "абьюз", "куплю", "продам",
+      "seo audit", "link building", "digital marketing services", "rank your website",
+      "da 40", "domain authority", "forex", "trading signals", "smm panel"
+    ],
+    "push_spam": false,
+    "spam_domains": [
+      "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
+      "msn.com", "live.com", "icloud.com", "googlemail.com", "mail.ru", "gmx.com"
+    ],
+    "real_intent_keywords": [
+      "quote", "quotation", "price", "pricing", "cost", "rfq", "procurement",
+      "purchase", "sourcing", "buy", "order", "moq", "lead time", "manufactur",
+      "pcb", "pcba", "smt", "assembly", "board", "supplier", "oem", "spec",
+      "询价", "报价", "采购", "打样", "样板", "订购", "下单", "交期", "生产",
+      "供应", "合作", "多少钱", "价格", "定制"
+    ]
+  }
+}

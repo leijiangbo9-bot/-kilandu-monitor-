@@ -1,0 +1,38 @@
+name: kilandu message monitor
+
+on:
+  schedule:
+    # 每 30 分钟跑一次(UTC)。可改为 */15 但会超免费额度, 见 README。
+    - cron: '*/30 * * * *'
+  workflow_dispatch:   # 允许手动触发一次(便于测试)
+
+permissions:
+  contents: write      # 允许提交推送 state.json
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run kilandu monitor
+        env:
+          # 敏感凭据全部来自 GitHub Secrets, 绝不写入仓库
+          KILANDU_USER: ${{ secrets.KILANDU_USER }}
+          KILANDU_PASS: ${{ secrets.KILANDU_PASS }}
+          SCT_KEY: ${{ secrets.SCT_KEY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          SMTP_ENABLE: ${{ secrets.SMTP_ENABLE }}
+        run: |
+          python3 kilandu_monitor.py --once --ci
+
+      - name: Commit updated state back to repo
+        run: |
+          git config user.name "kilandu-bot"
+          git config user.email "bot@kilandu.local"
+          git add -A
+          git diff --cached --quiet && echo "no state change" || git commit -m "chore: update monitor state [skip ci]"
+          git push

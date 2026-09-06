@@ -1,0 +1,12 @@
+# 敏感/临时文件——绝不提交
+_ck_*.txt
+_post_tmp.txt
+monitor.log
+__pycache__/
+*.pyc
+
+# 本地私有说明/密钥备份(如果有)
+local_*
+
+# 注意: state.json 需要提交(跨运行持久化基线), 不要忽略它
+# config.json 需要提交(脱敏版), 敏感字段走 GitHub Secrets
